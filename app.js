@@ -6,8 +6,26 @@ const app = express();
 const admin = require("./routes/admin");
 const path = require("path");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 //config
+// session
+app.use(session({
+    secret: "cursoNode",
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
+
+//configurando Middleware
+app.use((req, res, next) => {
+    //declarando variaveis globals
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+});
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -34,7 +52,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/admin', admin);
 
 //Ligando Servidor
-const port = 8081;
+const port = process.env.port || 8081;
 app.listen(port, () => {
     console.log("Servidor On");
 });
