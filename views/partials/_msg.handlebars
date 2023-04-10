@@ -1,8 +1,19 @@
 {{#if success_msg}}
     <div class="alert alert-success">{{success_msg}}</div>
+    <script>
+        setTimeout(()=> {
+            document.querySelector('.alert-success').remove();
+        }, 5000);
+    </script>
+    
 {{/if}}
 
 {{#if error_msg}}
     <div class="alert alert-danger">{{error_msg}}</div>
+    <script>
+        setTimeout(() => {
+            document.querySelector('.alert-danger').remove();
+        }, 5000);
+    </script>
 
 {{/if}}
