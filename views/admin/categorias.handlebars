@@ -6,11 +6,22 @@
     <div class="card mt-4 rounded-top">
         <div class="card-body ">
             <h4>{{nome}}</h4>
-            <small>Slug: {{slug}}</small>
             <br>
-            <small>Data do Post: {{date}}</small>
+            <div class="d-flex justify-content-between align-items-center">
+                <small>Slug: {{slug}}</small>
+                <small class="text-muted">Data do Post: {{date}}</small>
+            </div>
+            <div class="d-flex">
+                <a href="/admin/categorias/edit/{{_id}}">
+                    <button class="btn btn-success mt-4 ">Editar Categoria</button>
+                </a>
+                <form action="/admin/categorias/deletar" method="post">
+                    <input type="hidden" name="id" value="{{_id}}">
+                    <button type="submit" class="btn btn-danger mt-4 m-2">Deletar Categoria</button>
+                </form>
+            </div>
         </div>
     </div>
 {{else}}
-
+    <h4 class="mt-4">Nenhuma Categoria Registrada!</h4>
 {{/each}}
