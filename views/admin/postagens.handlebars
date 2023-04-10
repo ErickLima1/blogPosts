@@ -1,0 +1,18 @@
+<h2>Lista de Postagens: </h2>
+<hr>
+<a href="/admin/postagem/add"><button class="btn btn-success " >Nova Postagens</button></a>
+
+{{#each postagem}}
+    <div class="card mt-3">
+        <div class="card-body">
+            <h4>Titutlo: {{titulo}}</h4>
+            <p>Descrição: {{descricao}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="alert alert-success">Categoria: {{categoria.nome}}</button>
+                <small class="text-muted">Data: {{data}}</small>
+            </div>
+        </div>
+    </div>
+{{else}}
+    <p>Nehnuma Postagem Registrada !</p>
+{{/each}}
