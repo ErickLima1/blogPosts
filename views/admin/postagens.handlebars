@@ -7,10 +7,12 @@
         <div class="card-body">
             <h4>Titutlo: {{titulo}}</h4>
             <p>Descrição: {{descricao}}</p>
+            <p>Conteudo: {{conteudo}}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <button class="alert alert-success">Categoria: {{categoria.nome}}</button>
                 <small class="text-muted">Data: {{data}}</small>
             </div>
+            <a href="/admin/postagem/edit/{{_id}}"><button class="btn btn-success" >Editar Postagem</button></a>
         </div>
     </div>
 {{else}}
