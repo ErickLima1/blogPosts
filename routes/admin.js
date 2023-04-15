@@ -92,7 +92,8 @@ router.post("/categorias/edit", (req, res) => {
         Categoria.findOne({_id: req.body.id}).then((categorias) => {
             categorias.nome = req.body.nome;
             categorias.slug = req.body.slug;
-    
+            categorias.data = new Date;
+            
             categorias.save().then(() => {
                 req.flash("success_msg", "Categoria Editada com Sucesso");
                 res.redirect("/admin/categorias");
@@ -111,7 +112,7 @@ router.post("/categorias/edit", (req, res) => {
 
 router.post("/categorias/deletar", (req, res) => {
     Categoria.deleteOne({_id: req.body.id}).then(() => {
-        req.flash("success_msg", "Categoria Deletada");
+        req.flash("error_msg", "Categoria Deletada");
         res.redirect("/admin/categorias");
         
     }).catch((err) =>  {
@@ -125,7 +126,7 @@ router.get('/categorias/add', (req, res) => {
 });
 
 router.get("/postagem", (req, res) => {
-    Postagem.find().lean().populate("categoria").sort({date: 'desc'}).then((postagem) => {
+    Postagem.find().lean().populate("categoria").sort({_id: -1 }).then((postagem) => {
         res.render("admin/postagens", {postagem: postagem});
 
     }).catch((err) => {
@@ -183,4 +184,55 @@ router.post("/postagem/nova", (req, res) => {
     }
 });
 
+router.get("/postagem/edit/:id", (req, res) => {
+    Postagem.findOne({_id:req.params.id}).lean().populate("categoria").then((postagem) => {
+        Categoria.find().lean().then((categorias ) => {
+            res.render("admin/editPostagem", {categorias: categorias, postagem, postagem});
+
+        }).catch((err) => {
+            req.flash("error_msg", "Houve Um Error Ao Listar As Categorias");
+            res.redirect("/admin/postagem");
+        });
+
+    }).catch((err) => {
+        req.flash("error_msg", "Esta Postagem Não Existe");
+        res.redirect("/admin/postagem");
+    });
+
+});
+
+router.post("/postagem/edit", (req, res) => {
+    var erro = [];
+    Postagem.findOne({_id: req.body.id}).then((postagem) => {
+        postagem.titulo = req.body.titulo;
+        postagem.slug = req.body.slug;
+        postagem.descricao = req.body.descricao;
+        postagem.conteudo = req.body.conteudo;
+        postagem.categoria = req.body.categoria;
+        postagem.data = new Date;
+
+        postagem.save().then(() => {
+            req.flash("success_msg", "Postagem Editada Com Sucesso");
+            res.redirect("/admin/postagem");
+        }).catch((err) => {
+            req.flash("error_msg", "Erro Inesperado");
+            res.redirect("/admin/postagem");
+        });
+    }).catch((err) => {
+        req.flash("error_msg", "Houve Um Erro Inesperado");
+        res.redirect("/admin/postagem");
+    });
+});
+
+router.post("/postagem/deletar", (req, res) => {
+    Postagem.deleteOne({_id: req.body.id}).then(() => {
+        req.flash("error_msg", "Postagem Deletada");
+        res.redirect("/admin/postagem");
+
+    }).catch((err) => {
+        req.flash("error_msg", "Houve um Erro Inesperado");
+        req.redirect("/admin/postagem");
+    });
+});
+ 
 module.exports = router;
