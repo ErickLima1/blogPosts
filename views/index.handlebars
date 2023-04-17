@@ -1,0 +1,32 @@
+<div class="jumbotron bg-dark-subtle ">
+  <h1 class="display-5 m-2">Bem Vindo</h1>
+  <p class="lead m-2">Site Feito com Nodejs, Usando a biblioteca do node e a framework handlebars.</p>
+  <hr class="my-4 m-2">
+  <p class="lead m-2">
+    <a class="btn btn-primary btn-lg m-2" href="#" role="button">Criar Conta</a>
+  </p>
+</div>
+<h2>Postagem Recente</h2>
+
+<div class="row">
+    {{#each postagem}}
+        <div class="col-6">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h3>{{titulo}}</h3>
+                    <div class="align-items-center row">
+                        <div class="col-10"></div>
+                        <div class="col-2">
+                             <small class="text-muted text-right" id="data">Postagem: {{dataFormatada}}</small>
+                        </div>
+                    </div>
+                    <p>{{descricao}}</p>
+                </div>
+            </div>
+        </div>
+        {{else}}
+            <h4>Sem Postagem no Momento!</h4>
+    {{/each}}
+</div>
+
+
