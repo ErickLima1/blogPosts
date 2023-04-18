@@ -29,4 +29,5 @@ const Postagem = new Schema({
     }
 });
 
+
 mongoose.model("postagem", Postagem);
