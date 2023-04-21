@@ -1,10 +1,13 @@
 <div class="jumbotron bg-dark-subtle ">
-  <h1 class="display-5 m-2">Bem Vindo</h1>
-  <p class="lead m-2">Site Feito com Nodejs, Usando a biblioteca do node e a framework handlebars.</p>
-  <hr class="my-4 m-2">
-  <p class="lead m-2">
-    <a class="btn btn-primary btn-lg m-2" href="#" role="button">Criar Conta</a>
-  </p>
+    <div class="m-2">
+        <h1 class="display-5">Bem Vindo</h1>
+        <p class="lead">Site Feito com Nodejs e handlebars, Usando a biblioteca do nodeJS + Express + mongoDB.</p>
+        <hr class="my-4">
+        <p class="lead">
+            <p class="">Aqui você vai poder ler sobre novidades do mundo da programação</p>
+            <a class="btn btn-primary btn-lg m-2" href="/usuarios/registro" role="button">Criar Conta</a>
+        </p>
+    </div>
 </div>
 <h2>Postagem Recente</h2>
 
@@ -17,10 +20,14 @@
                     <div class="align-items-center row">
                         <div class="col-10"></div>
                         <div class="col-2">
-                             <small class="text-muted text-right" id="data">Postagem: {{dataFormatada}}</small>
+                             <small class="text-muted text-right" id="data">{{dataFormatada}}</small>
                         </div>
                     </div>
                     <p>{{descricao}}</p>
+                    <small class="text-muted">{{categoria.nome}}</small>
+                </div>
+                <div class="mt-4 m-2">
+                    <a href="/postagem/{{slug}}"><button class="btn btn-outline-success mt-4 m-2">Leia Mais</button></a>
                 </div>
             </div>
         </div>
