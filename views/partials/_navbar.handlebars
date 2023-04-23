@@ -12,20 +12,45 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/categorias">Categorias</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Postagens</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/usuarios/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/usuarios/registro">Registro</a>
-        </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Busca" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
+
+    <div class="navbar-nav ms-auto" id="nav-links">
+      {{#if user}}
+        {{#unless eAdmin:1}}
+          <li class="nav-item">
+            <a href="/admin/categorias" class="nav-link active">addCategorias</a>
+          </li>
+          <li class="nav-item active">
+            <a href="/admin/postagem" class="nav-link active">addPostagens</a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/crud" class="nav-link">Crud</a>
+          </li>
+          <li class="nav-item">
+            <a href="/usuarios/logout" class="nav-link active">Sair</a>
+          </li>
+        <li class="nav-item">
+          <span class="nav-link">Usuario: {{user.nome}}</span>
+        </li>
+        {{else}}
+          <li class="nav-item">
+            <a href="/usuarios/logout" class="nav-link active">Sair</a>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link">Usuario: {{user.nome}}</span>
+        </li>
+        {{/unless}}
+      {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="usuarios/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="usuarios/registro">Registrar</a>
+        </li>
+      {{/if}}
+
+    </div>
     </div>
   </div>
 </nav>
+
