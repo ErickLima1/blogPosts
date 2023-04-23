@@ -11,7 +11,7 @@ const {eAdmin} = require("../helpers/eAdmin");
 
 
 router.get("/", eAdmin, (req, res) => {
-    res.render("admin/index")
+    res.render("admin/index");
 });
 
 router.get("/posts", eAdmin, (req, res) => {
