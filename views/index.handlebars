@@ -13,16 +13,17 @@
 
 <div class="row">
     {{#each postagem}}
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div class="card mt-4">
                 <div class="card-body">
                     <h3>{{titulo}}</h3>
                     <div class="align-items-center row">
                         <div class="col-10"></div>
-                        <div class="col-2">
-                             <small class="text-muted text-right" id="data">{{dataFormatada}}</small>
+                        <div class="col-12">
+                             <small class="text-muted text-right col-sm-12" id="data">{{dataFormatada}}</small>
                         </div>
                     </div>
+                    <br>
                     <p>{{descricao}}</p>
                     <small class="text-muted">{{categoria.nome}}</small>
                 </div>
