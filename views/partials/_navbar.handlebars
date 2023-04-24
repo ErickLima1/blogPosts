@@ -26,18 +26,18 @@
           <li class="nav-item">
             <a href="/admin/crud" class="nav-link">Crud</a>
           </li>
+        <li class="nav-item">
+          <span class="nav-link">Usuario: {{user.nome}}</span>
+        </li>
           <li class="nav-item">
             <a href="/usuarios/logout" class="nav-link active">Sair</a>
           </li>
-        <li class="nav-item">
-          <span class="nav-link">Usuario: {{user.nome}}</span>
-        </li>
         {{else}}
-          <li class="nav-item">
-            <a href="/usuarios/logout" class="nav-link active">Sair</a>
-        </li>
         <li class="nav-item">
           <span class="nav-link">Usuario: {{user.nome}}</span>
+        </li>
+        <li class="nav-item">
+            <a href="/usuarios/logout" class="nav-link active">Sair</a>
         </li>
         {{/unless}}
       {{else}}
