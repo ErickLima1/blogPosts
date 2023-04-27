@@ -1,0 +1,46 @@
+<div class="card my-5">
+<div class="container">
+    <div class="jumbotron">
+        <h2 class="mt-4">Lista de Usuários <span class="badge badge-secondary"></span></h2>
+        <br>
+    </div>
+     <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                    {{#each usuario}}
+                    <tr>
+                        <td>{{nome}}</td>
+                        <td>{{email}}</td>
+                        {{#if eAdmin}}
+                            <td >Administrador</td>
+                        {{else}}
+                            <td>Publico</td>
+                        {{/if}}
+                        <td>
+                            <div class="btn-group ">
+                                <a href="/admin/crud/edit/{{_id}}">
+                                    <button class="btn btn-primary" style="margin-right: 10px;">Editar</button>
+                                </a>
+                            <form action="/admin/crud/deletar" method="post">
+                                <input type="hidden" name="id" value="{{_id}}">
+                                <button type="submit" class="btn btn-danger" >Deletar</button>
+                            </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
