@@ -1,0 +1,37 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+
+<h3>Editar Conta</h3>
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/crud/edit" method="post" class="row g-3">
+            <input type="hidden" type="text" name="id" value="{{usuario._id}}">
+            <div class="col-md-6">
+                <label for="nome" class="form-label">Nome: </label>
+                <input type="text" name="nome" class="form-control" value="{{usuario.nome}}" >
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email: </label>
+                <input type="email" name="email" class="form-control" value="{{usuario.email}}"  >
+            </div>
+            {{#if usuario.eAdmin}}
+                <br>
+                <div class="alert alert-info mt-1">
+                    <td class=>Essa conta e Administradora</td>
+                </div>
+            {{else}}
+                <div class="form-group form-check-inline">
+                    <input type="checkbox" class="form-check-input form-check-lg" name="eAdmin" {{#if usuario.eAdmin}}checked{{/if}}>
+                    <label class="form-check-label" for="exampleCheck1">Administrador</label>
+                </div>
+            {{/if}}
+            <div class="col-12">
+                <button type="submit" class="btn btn-success mt-3" >Editar</button>
+            </div>
+        </form>
+    </div>
+</div> 
+
