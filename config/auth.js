@@ -9,12 +9,11 @@ const Usuario = mongoose.model("usuarios");
 
 module.exports = (passport) => {
     passport.use(new localStrategy({usernameField: "email", passwordField:"senha"},(email, senha, done) => {
-        
         Usuario.findOne({email: email}).then((usuario) => {
             if(!usuario) {
                 return done(null, false, {message: "Email ou Senha incorreta"});
             }
-
+            
             bcrypt.compare(senha, usuario.senha, (error, batem) => {
                 if(batem) {
                     return done(null, usuario)
